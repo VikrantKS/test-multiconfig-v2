@@ -1,0 +1,59 @@
+postMerge :
+  preRun: 
+    command:
+      - yarn install
+      
+  
+  subModules:          #Not to be changed
+      
+        
+      - name:  mocha-example-1
+        path : "./mocha-example-1"
+        pattern: 
+          - "./test/**/*.spec.ts"
+        
+        framework : mocha
+        preRun:
+          command:
+            - npm ci
+          
+        postRun:
+            command:
+              - node --version 
+              
+      - name:  jasmine-reporters
+        path : "./jasmine-reporters"
+        pattern: 
+          - "./spec/**/*Spec.js"
+        
+        framework : jasmine
+        preRun:
+          command:
+            - npm i
+          
+        postRun:
+            command:
+              - node --version 
+        
+      
+        
+preMerge : 
+  
+  subModules:          #Not to be changed
+     
+    - name:  mocha-example-1
+      path : "./mocha-example-1"
+      pattern: 
+        - "./test/**/*.spec.ts"
+      
+      framework : mocha
+      preRun:
+        command:
+          - npm ci
+        
+      postRun:
+          command:
+            - node --version 
+      nodeVersion : 17.3.1
+            
+version : 2.0
